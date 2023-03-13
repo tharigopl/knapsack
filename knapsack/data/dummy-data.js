@@ -15,7 +15,8 @@ export const HOMECATEGORIES = [
   new Category('h5', 'Rewards', '#368dff'),
   new Category('h6', 'Expenses', '#41d95d'),
   new Category('h6', 'Event Planner', '#ffc7ff'),
-  new Category('h7', 'Reminder From The Minder', '#9eecff')
+  new Category('h7', 'Reminder From The Minder', '#9eecff'),
+  new Category('h8', 'Link Stripe Account', '#b9ffb0'),  
 ];
 
 export const CATEGORIES = [

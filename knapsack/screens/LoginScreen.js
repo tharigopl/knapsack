@@ -40,41 +40,10 @@ function LoginScreen() {
           if (error.code === 'auth/invalid-email') {
             console.log('That email address is invalid!');
           }
-
-          console.error(error);
+          Alert.alert("Authentication failed!","Could not log you in. Please check the credentials!")
+          console.log(error);
+          setIsAuthenticating(false);
         });
-      /* const u1 = await login(email, password);
-      console.log("U@@@@@@@@@@@@@@@1",u1);
-      const token = u1.idToken;
-      console.log("TOKEN $$$$$$$$$$$$$$$$$4",token);
-      authCtx.authenticate(token); */
-      /* auth
-        .signInWithEmailAndPassword(email, password)
-        .then(userCredentials => {
-          const user = userCredentials.user;
-          console.log(user.email);
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log("Error ",error);
-        }); */
-
-      /* const auth = getAuth();
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          // Signed in 
-          const user = userCredential.user;
-          const token = userCredential.user.getIdToken((token)=> token)
-          authCtx.authenticate(token);
-          console.log("Auth by firebase sdk ", token);
-          // ...
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log("Error ",error);
-        }); */
       
     }catch(error){
       Alert.alert('Authentication failed!', 'Could not log you in. Please check your credentials or try again later!');

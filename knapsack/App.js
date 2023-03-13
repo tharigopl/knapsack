@@ -37,9 +37,12 @@ import { Ionicons } from '@expo/vector-icons';
 
 import IconButton from './components/ui/IconButton';
 import UsersContextProvider from './store/user-context';
+import StripeUsersContextProvider from './store/stripe-context';
 import { fetchPublishableKey } from './helper';
 import CardScreen from './screens/CardScreen';
 import PaymentScreen from './screens/PaymentScreen';
+import LinkStripe from './screens/LinkStripe';
+import StripeDashboard from './screens/StripeDashboard';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -90,6 +93,15 @@ function DrawerNavigator() {
       <Drawer.Screen
         name="AllCards"
         component={AllCards}
+        options={{
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="star" color={color} size={size} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="StripeDashboard"
+        component={StripeDashboard}
         options={{
           drawerIcon: ({ color, size }) => (
             <Ionicons name="star" color={color} size={size} />
@@ -223,6 +235,44 @@ function AccountsOverview() {
   );
 }
 
+function LinkStripeNavigator() {
+  return (
+    
+    <BottomTabs.Navigator
+    screenOptions={({ navigation }) => ({
+      headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+      headerTintColor: 'white',
+      tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+      tabBarActiveTintColor: GlobalStyles.colors.accent500,
+      headerRight: ({ tintColor }) => (
+        <IconButton
+          icon="add"
+          size={24}
+          color={tintColor}
+          onPress={() => {
+            navigation.navigate('LinkStripe');
+          }}
+        />
+      ),
+    })}
+  >
+
+
+       <BottomTabs.Screen
+        name="LinkStripe"
+        component={LinkStripe}
+        options={{
+          title: 'Link Stripe',
+          tabBarLabel: 'Link Stripe',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="calendar" size={size} color={color} />
+          ),
+        }}
+      />
+    </BottomTabs.Navigator>
+  );
+}
+
 function AuthenticatedStack() {
 
   const authCtx = useContext(AuthContext);
@@ -260,6 +310,9 @@ function AuthenticatedStack() {
       <Stack.Screen name="AllAccountsOverview" component={AccountsOverview} 
        options={{headerShown:false}}
       />
+      <Stack.Screen name="LinkStripeAccount" component={LinkStripeNavigator} 
+       options={{headerShown:false}}
+      />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} 
        options={{headerShown:false}}
       />
@@ -273,6 +326,9 @@ function AuthenticatedStack() {
        options={{headerShown:false}}
       />
       <Stack.Screen name="Payment" component={Payment} 
+       options={{headerShown:false}}
+      />
+      <Stack.Screen name="LinkStripe" component={LinkStripe} 
        options={{headerShown:false}}
       />
       <Stack.Screen
@@ -314,6 +370,7 @@ function Navigation() {
       // <StripeProvider publishableKey={publishableKey}>
       //   <CardScreen />
         <UsersContextProvider>
+          <StripeUsersContextProvider>
           <AccountsContextProvider>
           <ExpensesContextProvider>
           <TasksContextProvider>
@@ -324,6 +381,7 @@ function Navigation() {
             </TasksContextProvider>
           </ExpensesContextProvider>
           </AccountsContextProvider>
+          </StripeUsersContextProvider>
         </UsersContextProvider>
       // </StripeProvider>
      

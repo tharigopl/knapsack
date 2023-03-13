@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "364205383599",
+    "firebase_url": "https://wunme-53e1d-default-rtdb.firebaseio.com",
+    "project_id": "wunme-53e1d",
+    "storage_bucket": "wunme-53e1d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364205383599:android:aa53bcf68649cb672cd95a",
+        "android_client_info": {
+          "package_name": "com.mompop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "364205383599-cr22m2p5ivere3b6kquefmj1b520j0me.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB20kmNkb7Ka1I3-dLxgZ_Fgh5NCd_7xrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "364205383599-cr22m2p5ivere3b6kquefmj1b520j0me.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -32,11 +32,11 @@ function HomeScreen({ navigation }) {
           const userDetail = await fetchUserDetails(token);
           setSelectedUser(userDetail);
           console.log("User Detail fetched ", userDetail);
-          console.log("User Detail fetched 1", selectedUser);
-          console.log("User Detail fetched 2", selectedUser[0].id);
-          setEditedUserId(selectedUser[0].id)
+          console.log("User Detail fetched 1", userDetail[0]);
+          console.log("User Detail fetched 2", userDetail[0].id);
+          setEditedUserId(userDetail[0].id)
           usersCtx.setUsers(userDetail);
-          console.log("User Context", usersCtx);
+          console.log("User Context", usersCtx.users);
          /*  if(userDetail.length > 0){
             setIsEditing(true);
             console.log("User Detail fetched 1", userDetail);
@@ -67,6 +67,13 @@ function HomeScreen({ navigation }) {
         }
         else if(itemData.item.id === 'h1'){
           navigation.navigate('ManageUser', {
+              editedUserId:editedUserId,
+              editedUser:selectedUser,
+              token:token,
+          });          
+        }
+        else if(itemData.item.id === 'h8'){
+          navigation.navigate('LinkStripeAccount', {
               editedUserId:editedUserId,
               editedUser:selectedUser,
               token:token,

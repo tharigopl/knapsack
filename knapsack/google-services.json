@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "364205383599",
-    "firebase_url": "https://wunme-53e1d-default-rtdb.firebaseio.com",
-    "project_id": "wunme-53e1d",
-    "storage_bucket": "wunme-53e1d.appspot.com"
+    "project_number": "170153844659",
+    "firebase_url": "https://stripefunctions-cdb57-default-rtdb.firebaseio.com",
+    "project_id": "stripefunctions-cdb57",
+    "storage_bucket": "stripefunctions-cdb57.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:364205383599:android:aa53bcf68649cb672cd95a",
+        "mobilesdk_app_id": "1:170153844659:android:52d3428b7eef4c728cf5c6",
         "android_client_info": {
-          "package_name": "com.mompop"
+          "package_name": "com.tamil.knapsack"
         }
       },
       "oauth_client": [
         {
-          "client_id": "364205383599-cr22m2p5ivere3b6kquefmj1b520j0me.apps.googleusercontent.com",
+          "client_id": "170153844659-3bjdu0mjj6ohj6tali49ina62d16aedm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB20kmNkb7Ka1I3-dLxgZ_Fgh5NCd_7xrE"
+          "current_key": "AIzaSyA0akytXUcMCGoo8haMvaO2xqogQOCXAzQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "364205383599-cr22m2p5ivere3b6kquefmj1b520j0me.apps.googleusercontent.com",
+              "client_id": "170153844659-3bjdu0mjj6ohj6tali49ina62d16aedm.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
