@@ -18,7 +18,7 @@ function LoginScreen() {
   console.log("TEST", auth);
   async function loginHandler({email, password})
   {
-
+    console.log("Process env ", process.env);
   console.log("Authenticate buttom ",email, password);
     setIsAuthenticating(true);
     try{

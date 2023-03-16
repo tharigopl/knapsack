@@ -8,7 +8,7 @@ import { GlobalStyles } from '../../constants/styles';
 import { ScrollView } from 'react-native-gesture-handler';
 
 function StripeUserForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }){
-    console.log("Stripe User Date Received ", defaultValues);
+    
     const [inputs, setInputs] = useState({
         firstName: {
           value: defaultValues ? defaultValues.firstName : '',
@@ -78,8 +78,8 @@ function StripeUserForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }
         const phonenoIsValid = stripeUserData.phoneno.trim().length > 0;        
         const passwordIsValid = stripeUserData.password.trim().length > 0;
         //const stripeAccountIdIsValid = stripeUserData.stripeAccountId.trim().length > 0;
-        const countryIsValid = userData.country.trim().length > 0;
-        console.log("Stripe User Form Submit 1", userData);
+        const countryIsValid = stripeUserData.country.trim().length > 0;
+        console.log("Stripe User Form Submit 1", stripeUserData);
         if (!firstNameIsValid || !lastNameIsValid || !emailIsValid || !phonenoIsValid ||
             !phonenoIsValid || !passwordIsValid || !countryIsValid) {
           console.log('Invalid input', 'Please check your input values');
@@ -100,7 +100,7 @@ function StripeUserForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }
           return;
         }
         console.log("before submit");
-        onSubmit(userData);
+        onSubmit(stripeUserData);
       }
     
       const formIsInvalid = !inputs.firstName.isValid || !inputs.lastName.isValid || !inputs.email.isValid || !inputs.phoneno.isValid ||

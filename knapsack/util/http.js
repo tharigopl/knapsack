@@ -6,7 +6,7 @@ const BACKEND_URL =  'https://wunme-53e1d-default-rtdb.firebaseio.com/';
   
 
 export async function storeExpense(expenseData, token) {  
-  const response = await axios.post(BACKEND_URL + '/expenses.json?auth='+ token, expenseData).catch(function (error) {
+  const response = await axios.post(`${BACKEND_URL}/expenses.json?auth=${token}`, expenseData).catch(function (error) {
     if (error.response) {
       // Request made and server responded
       console.log(error.response.data);

@@ -42,9 +42,9 @@ export default function LinkStripe({ route, navigation }) {
     }
   
     async function confirmHandler(userData) {
-      console.log("Confirm Handler Link Stripe", isEditing);
+      console.log("Confirm Handler Link Stripe", userData);
       try {
-        if (isEditing) {          
+        if (true) {          
           const stripeUserData = await signUpStripe(userData);
         } else {
           //userCtx.addUser({ ...userData, id: id });

@@ -9,11 +9,13 @@ const BACKEND_URL_STRIPE =  'http://localhost:3000/';
   
 
 export async function signUpStripe(userData) {   
-  userData['password'] = "Tharigopla123";  
-  userData['country'] = "US";  
-  userData['firstName'] = "Adrian";
-  userData['lastName'] = "Tarigopla";
+  // userData['password'] = "Tharigopla123";  
+  // userData['country'] = "US";  
+  // userData['firstName'] = "Adrian";
+  // userData['lastName'] = "Tarigopla";
   console.log(userData);
+  // const newItems = {...userData};
+  // delete newItems.stripeAccountId;
   //const requestData = {username:"sample", password:"sample1", email:"sample@gmail.com"};
   //console.log("Stripe Request Data ",requestData);
 
@@ -45,7 +47,7 @@ export async function stripeDashboard(stripeAccountId) {
   //console.log("Stripe Request Data ",requestData);
 
   console.log("Stripe URL ", MONGO_STRIPE_API_URL);
-  const response = await axios.get(MONGO_STRIPE_API_URL + '/hosts/udashboard', stripeAccountId).catch(function (error) {
+  const response = await axios.get(process.env.REACT_APP_STRIPE_BACKEND_URL + '/hosts/udashboard', stripeAccountId).catch(function (error) {
     if (error.response) {
       // Request made and server responded
       console.log(error.response.data);
