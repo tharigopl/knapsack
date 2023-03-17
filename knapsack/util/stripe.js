@@ -19,7 +19,17 @@ export async function signUpStripe(userData) {
   //const requestData = {username:"sample", password:"sample1", email:"sample@gmail.com"};
   //console.log("Stripe Request Data ",requestData);
 
-  console.log("Stripe URL ", MONGO_STRIPE_API_URL);
+  userData['password'] = "Tharigopla123";  
+  userData['country'] = "US";  
+  userData['firstName'] = "Adrian";
+  userData['lastName'] = "Tarigopla";
+  userData['email'] = "xyz12345@gmail.com";  
+  userData['phoneno'] = "4699996948";
+  userData['stripeUsername'] = "sTarigopla";
+  userData['stripeAccountId'] = "sAccId";
+
+
+  console.log("Stripe URL ", MONGO_STRIPE_API_URL, userData);
   const response = await axios.post(MONGO_STRIPE_API_URL + '/hosts/usignup', userData).catch(function (error) {
     if (error.response) {
       // Request made and server responded

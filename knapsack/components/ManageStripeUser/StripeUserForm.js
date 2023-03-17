@@ -70,35 +70,48 @@ function StripeUserForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }
             country:inputs.country.value,
         };
         console.log("Stripe User Form Submit", stripeUserData);
-        const firstNameIsValid = stripeUserData.firstName.trim().length > 0;
-        const lastNameIsValid = stripeUserData.lastName.trim().length > 0;
-        //const middleNameIsValid = stripeUserData.middleName.trim().length > 0;
-        const emailIsValid = stripeUserData.email.trim().length > 0;
-        const stripeUsernameIsValid = stripeUserData.stripeUsername.length > 0;
-        const phonenoIsValid = stripeUserData.phoneno.trim().length > 0;        
-        const passwordIsValid = stripeUserData.password.trim().length > 0;
-        //const stripeAccountIdIsValid = stripeUserData.stripeAccountId.trim().length > 0;
-        const countryIsValid = stripeUserData.country.trim().length > 0;
-        console.log("Stripe User Form Submit 1", stripeUserData);
-        if (!firstNameIsValid || !lastNameIsValid || !emailIsValid || !phonenoIsValid ||
-            !phonenoIsValid || !passwordIsValid || !countryIsValid) {
-          console.log('Invalid input', 'Please check your input values');
-          setInputs((curInputs) => {
-            return {
+        // const firstNameIsValid = stripeUserData.firstName.trim().length > 0;
+        // const lastNameIsValid = stripeUserData.lastName.trim().length > 0;
+        // //const middleNameIsValid = stripeUserData.middleName.trim().length > 0;
+        // const emailIsValid = stripeUserData.email.trim().length > 0;
+        // const stripeUsernameIsValid = stripeUserData.stripeUsername.length > 0;
+        // const phonenoIsValid = stripeUserData.phoneno.trim().length > 0;        
+        // const passwordIsValid = stripeUserData.password.trim().length > 0;
+        // //const stripeAccountIdIsValid = stripeUserData.stripeAccountId.trim().length > 0;
+        // const countryIsValid = stripeUserData.country.trim().length > 0;
+        // console.log("Stripe User Form Submit 1", stripeUserData);
+        // if (!firstNameIsValid || !lastNameIsValid || !emailIsValid || !phonenoIsValid ||
+        //     !phonenoIsValid || !passwordIsValid || !countryIsValid) {
+        //   console.log('Invalid input', 'Please check your input values');
+        //   setInputs((curInputs) => {
+        //     return {
 
-              firstName: {value:curInputs.firstName.value, isValid: firstNameIsValid},
-                lastName: {value:curInputs.lastName.value, isValid: lastNameIsValid},
-                middleName: {value:curInputs.middleName.value},
-                email: {value:curInputs.email.value, isValid: emailIsValid},
-                phoneno: {value:curInputs.phoneno.value, isValid: phonenoIsValid},
-                stripeUsername: {value:curInputs.stripeUsername.value, isValid: stripeUsernameIsValid},
-                password: {value:curInputs.password.value, isValid: passwordIsValid},
-                stripeAccountId: {value:curInputs.stripeAccountId.value},
-                country: {value:curInputs.country.value, isValid: countryIsValid},
-            };
-          });
-          return;
-        }
+        //       firstName: {value:curInputs.firstName.value, isValid: firstNameIsValid},
+        //         lastName: {value:curInputs.lastName.value, isValid: lastNameIsValid},
+        //         middleName: {value:curInputs.middleName.value},
+        //         email: {value:curInputs.email.value, isValid: emailIsValid},
+        //         phoneno: {value:curInputs.phoneno.value, isValid: phonenoIsValid},
+        //         stripeUsername: {value:curInputs.stripeUsername.value, isValid: stripeUsernameIsValid},
+        //         password: {value:curInputs.password.value, isValid: passwordIsValid},
+        //         stripeAccountId: {value:curInputs.stripeAccountId.value},
+        //         country: {value:curInputs.country.value, isValid: countryIsValid},
+        //     };
+        //   });
+        //   return;
+        // }
+        setInputs((curInputs) => {
+          return {
+              firstName: {value:curInputs.firstName.value, isValid: true},
+              lastName: {value:curInputs.lastName.value, isValid: true},
+              middleName: {value:curInputs.middleName.value},
+              email: {value:curInputs.email.value, isValid: true},
+              phoneno: {value:curInputs.phoneno.value, isValid: true},
+              stripeUsername: {value:curInputs.stripeUsername.value, isValid: true},
+              password: {value:curInputs.password.value, isValid: true},
+              stripeAccountId: {value:curInputs.stripeAccountId.value},
+              country: {value:curInputs.country.value, isValid: true},
+          }
+        });
         console.log("before submit");
         onSubmit(stripeUserData);
       }

@@ -3,10 +3,13 @@ import axios from 'axios';
 //const BACKEND_URL = 'https://uwunm-fe912-default-rtdb.firebaseio.com';
 
 const BACKEND_URL =  'https://wunme-53e1d-default-rtdb.firebaseio.com/';
+
+const UWUNM_BACKEND_URL = 'https://uwunm-fe912-default-rtdb.firebaseio.com/';
   
+const STRIPEFB_BACKEND_URL = 'https://stripefunctions-cdb57-default-rtdb.firebaseio.com/';
 
 export async function storeExpense(expenseData, token) {  
-  const response = await axios.post(`${BACKEND_URL}/expenses.json?auth=${token}`, expenseData).catch(function (error) {
+  const response = await axios.post(`${STRIPEFB_BACKEND_URL}/expenses.json?auth=${token}`, expenseData).catch(function (error) {
     if (error.response) {
       // Request made and server responded
       console.log(error.response.data);
@@ -26,7 +29,7 @@ export async function storeExpense(expenseData, token) {
 }
 
 export async function fetchExpenses(token) {
-  const response = await axios.get(BACKEND_URL + '/expenses.json?auth='+ token).catch(function (error) {
+  const response = await axios.get(STRIPEFB_BACKEND_URL + '/expenses.json?auth='+ token).catch(function (error) {
     if (error.response) {
       // Request made and server responded
       console.log(error.response.data);
@@ -58,7 +61,7 @@ export async function fetchExpenses(token) {
 }
 
 export async function updateExpense(id, expenseData, token) {
-  return axios.put(BACKEND_URL + `/expenses/${id}.json?auth=${token}`, expenseData).catch(function (error) {
+  return axios.put(STRIPEFB_BACKEND_URL + `/expenses/${id}.json?auth=${token}`, expenseData).catch(function (error) {
     if (error.response) {
       // Request made and server responded
       console.log(error.response.data);
@@ -76,7 +79,7 @@ export async function updateExpense(id, expenseData, token) {
 }
 
 export async function deleteExpense(id, token) {
-  return axios.delete(BACKEND_URL + `/expenses/${id}.json?auth=${token}`).catch(function (error) {
+  return axios.delete(STRIPEFB_BACKEND_URL + `/expenses/${id}.json?auth=${token}`).catch(function (error) {
     if (error.response) {
       // Request made and server responded
       console.log(error.response.data);
@@ -97,7 +100,7 @@ export async function deleteExpense(id, token) {
 export async function storeAccount(accountData, token) {
 
   console.log("Store Account Token "+ [accountData]);
-    const response = await axios.post(BACKEND_URL + '/accounts.json?auth='+ token, accountData).catch(function (error) {
+    const response = await axios.post(STRIPEFB_BACKEND_URL + '/accounts.json?auth='+ token, accountData).catch(function (error) {
         if (error.response) {
           // Request made and server responded
           console.log(error.response.data);
@@ -118,7 +121,7 @@ export async function storeAccount(accountData, token) {
   }
   
   export async function fetchAccounts(token) {
-    const response = await axios.get(BACKEND_URL + '/accounts.json?auth='+ token).catch(function (error) {
+    const response = await axios.get(STRIPEFB_BACKEND_URL + '/accounts.json?auth='+ token).catch(function (error) {
         if (error.response) {
           // Request made and server responded
           console.log(error.response.data);
@@ -152,7 +155,7 @@ export async function storeAccount(accountData, token) {
   }
   
   export async function updateAccount(id, accountData, token) {
-    return axios.put(BACKEND_URL + `/accounts/${id}.json?auth=${token}`, accountData).catch(function (error) {
+    return axios.put(STRIPEFB_BACKEND_URL + `/accounts/${id}.json?auth=${token}`, accountData).catch(function (error) {
         if (error.response) {
           // Request made and server responded
           console.log(error.response.data);
@@ -170,7 +173,7 @@ export async function storeAccount(accountData, token) {
   }
   
   export async function deleteAccount(id, token) {
-    return axios.delete(BACKEND_URL + `/accounts/${id}.json?auth=${token}`).catch(function (error) {
+    return axios.delete(STRIPEFB_BACKEND_URL + `/accounts/${id}.json?auth=${token}`).catch(function (error) {
         if (error.response) {
           // Request made and server responded
           console.log(error.response.data);
@@ -189,7 +192,7 @@ export async function storeAccount(accountData, token) {
 
   //User APIs
   export async function storeUser(userData, token) {  
-    const response = await axios.post(BACKEND_URL + '/users.json?auth='+ token, userData).catch(function (error) {
+    const response = await axios.post(STRIPEFB_BACKEND_URL + '/users.json?auth='+ token, userData).catch(function (error) {
       if (error.response) {
         // Request made and server responded
         console.log(error.response.data);
@@ -209,7 +212,7 @@ export async function storeAccount(accountData, token) {
   }
 
   export async function fetchUserDetails(token) {
-    const response = await axios.get(BACKEND_URL + '/users.json?auth='+ token).catch(function (error) {
+    const response = await axios.get(STRIPEFB_BACKEND_URL + '/users.json?auth='+ token).catch(function (error) {
       if (error.response) {
         // Request made and server responded
         console.log(error.response.data);
@@ -251,7 +254,7 @@ export async function storeAccount(accountData, token) {
   }
 
   export async function updateUser(id, userData, token) {
-    return axios.put(BACKEND_URL + `/users/${id}.json?auth=${token}`, userData).catch(function (error) {
+    return axios.put(STRIPEFB_BACKEND_URL + `/users/${id}.json?auth=${token}`, userData).catch(function (error) {
       if (error.response) {
         // Request made and server responded
         console.log(error.response.data);
