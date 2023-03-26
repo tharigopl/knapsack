@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Text, View, KeyboardAvoidingView, Linking } from 'react-native'
 import StripeUserForm  from "../components/ManageStripeUser/StripeUserForm";
 import React from 'react'
 import { GlobalStyles } from '../constants/styles';
@@ -7,6 +7,7 @@ import { useContext, useLayoutEffect, useState, useEffect } from 'react';
 import { StripeUserContext } from '../store/stripe-context';
 import { httpRequest } from '@alpacahq/alpaca-trade-api/dist/api';
 import { signUpStripe } from '../util/stripe';
+import * as WebBrowser from 'expo-web-browser';
 
 export default function LinkStripe({ route, navigation }) {
 
@@ -20,22 +21,32 @@ export default function LinkStripe({ route, navigation }) {
   const stripeUserCtx = useContext(StripeUserContext);
   console.log("Linkstripe Ctx",stripeUserCtx.stripeusers);
 
-  const editedUserId = route.params?.editedUserId;
-  const isEditing = !!editedUserId;
+  const editedStripeUserId = route.params?.editedStripeUserId;
+  const isEditing = !!editedStripeUserId;
 
-  // const selectedUser = userCtx.users.find(
-  //   (user) => user.id === editedUserId
-  // );
-  const selectedUser = stripeUserCtx.stripeusers[0];
+  const selectedStripeUser = stripeUserCtx.stripeusers.find(
+    (user) => user.id === editedUserId
+  );
+
+  // const selectedUser = stripeUserCtx.stripeusers[0];
   //console.log("Linkstripe Edited User Id", editedUserId);
-  console.log("Linkstripe Edited User", selectedUser);
+  console.log("Linkstripe Edited User", selectedStripeUser);
+  
+  const [result, setResult] = useState(null);
+
+  const _handlePressButtonAsync = async () => {
+    
+  };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: isEditing ? 'Edit Stripe User' : 'Add Stripe User',
+    });
+  }, [navigation, isEditing]);
+
+
   
 
-  // useLayoutEffect(() => {
-  //   navigation.setOptions({
-  //     title: isEditing ? 'Edit User' : 'Add User',
-  //   });
-  // }, [navigation, isEditing]);
 
   function cancelHandler() {
       navigation.goBack();
@@ -46,13 +57,23 @@ export default function LinkStripe({ route, navigation }) {
       try {
         if (true) {          
           const stripeUserData = await signUpStripe(userData);
+          console.log("*******************  Stripe User Data  ***********************",stripeUserData.user.accountLink.url);
+          // let result = await WebBrowser.openBrowserAsync(stripeUserData.user.accountLink.url);
+          // setResult(result);
+          // console.log("Result ",result);
+          //await Linking.openURL(stripeUserData.user.accountLink.url);
+
+          navigation.navigate("StripeUserOnboarding1", {
+            accountSetupUrl: stripeUserData.user.accountLink
+          });
+          //stripeUserCtx.addStripeUser()
         } else {
           //userCtx.addUser({ ...userData, id: id });
         }
         //await signUpStripe();
-        navigation.goBack();
+        
       } catch (error) {
-        console.log("Error Stripe");
+        console.log("Error Stripe", error);
        /*  setError('Could not save data - please try again later!');
         setIsSubmitting(false); */
       }
@@ -65,7 +86,7 @@ return (
       submitButtonLabel={isEditing ? 'Update' : 'Add'}
       onSubmit={confirmHandler}
       onCancel={cancelHandler}
-      defaultValues={selectedUser}
+      defaultValues={selectedStripeUser}
     />
 
   </KeyboardAvoidingView>

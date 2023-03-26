@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { API_URL_SERVER } from '../Config';
 import {MONGO_STRIPE_API_URL} from '../Config';
+import {Linking} from 'react-native';
 
 //const BACKEND_URL = 'https://uwunm-fe912-default-rtdb.firebaseio.com';
 
@@ -9,28 +10,14 @@ const BACKEND_URL_STRIPE =  'http://localhost:3000/';
   
 
 export async function signUpStripe(userData) {   
-  // userData['password'] = "Tharigopla123";  
-  // userData['country'] = "US";  
-  // userData['firstName'] = "Adrian";
-  // userData['lastName'] = "Tarigopla";
-  console.log(userData);
-  // const newItems = {...userData};
-  // delete newItems.stripeAccountId;
-  //const requestData = {username:"sample", password:"sample1", email:"sample@gmail.com"};
-  //console.log("Stripe Request Data ",requestData);
-
-  userData['password'] = "Tharigopla123";  
-  userData['country'] = "US";  
-  userData['firstName'] = "Adrian";
-  userData['lastName'] = "Tarigopla";
-  userData['email'] = "xyz12345@gmail.com";  
-  userData['phoneno'] = "4699996948";
-  userData['stripeUsername'] = "sTarigopla";
-  userData['stripeAccountId'] = "sAccId";
+  // userData['name'] = "AQATest123123AAA1";
+  // userData['password'] = "QTest1231231!AAA";
+  // userData['email'] = "AQAtest123123AAA1@gmail.com";
 
 
   console.log("Stripe URL ", MONGO_STRIPE_API_URL, userData);
-  const response = await axios.post(MONGO_STRIPE_API_URL + '/hosts/usignup', userData).catch(function (error) {
+
+  const response = await axios.post(MONGO_STRIPE_API_URL+'/signup', userData).catch(function (error) {
     if (error.response) {
       // Request made and server responded
       console.log(error.response.data);
@@ -46,8 +33,10 @@ export async function signUpStripe(userData) {
 
   });
   //console.log("Stripe Respose ",response);
-  const id = response.data.name;
-  return id;
+  console.log("Stripe Respose ", response.data.user.accountLink);  
+  //await Linking.openURL(response.data.user.accountLink.url);
+  console.log("Signup Stripe account");
+  return response.data;
 }
 
 export async function stripeDashboard(stripeAccountId) {   

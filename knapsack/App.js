@@ -42,6 +42,7 @@ import { fetchPublishableKey } from './helper';
 import CardScreen from './screens/CardScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import LinkStripe from './screens/LinkStripe';
+import StripeUserOnboarding1 from './screens/StripeUserOnboarding1';
 import StripeDashboard from './screens/StripeDashboard';
 
 const Stack = createNativeStackNavigator();
@@ -329,6 +330,9 @@ function AuthenticatedStack() {
        options={{headerShown:false}}
       />
       <Stack.Screen name="LinkStripe" component={LinkStripe} 
+       options={{headerShown:false}}
+      />
+      <Stack.Screen name="StripeUserOnboarding1" component={StripeUserOnboarding1} 
        options={{headerShown:false}}
       />
       <Stack.Screen

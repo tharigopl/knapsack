@@ -10,42 +10,18 @@ import { ScrollView } from 'react-native-gesture-handler';
 function StripeUserForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }){
     
     const [inputs, setInputs] = useState({
-        firstName: {
-          value: defaultValues ? defaultValues.firstName : '',
-          isValid: true,
-        },
-        middleName: {
-            value: defaultValues ? defaultValues.middleName : '',
-            isValid: true,
-          },
-        lastName: {
-          value: defaultValues ? defaultValues.lastName : '',
-          isValid: true,
-        },
-        stripeUsername: {
-          value: defaultValues ? defaultValues.stripeUsername : '',
+        name: {
+          value: defaultValues ? defaultValues.name : '',
           isValid: true,
         },
         email: {
             value: defaultValues ? defaultValues.email : '',
             isValid: true,
-        },
-        phoneno: {
-            value: defaultValues ? defaultValues.phoneno : '',
-            isValid: true,
-        },
+          },
         password: {
-            value: defaultValues ? defaultValues.password : '',
-            isValid: true,
-        },
-        stripeAccountId: {
-            value: defaultValues ? defaultValues.stripeAccountId : '',
-            isValid: true,
-        },
-        country: {
-            value: defaultValues ? defaultValues.country : '',
-            isValid: true,
-        },
+          value: defaultValues ? defaultValues.password : '',
+          isValid: true,
+        }
       });
 
       function inputChangedHandler(inputIdentifier, enteredValue) {
@@ -59,15 +35,9 @@ function StripeUserForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }
     
       function submitHandler() {
         const stripeUserData = {
-            firstName:inputs.firstName.value,
-            lastName:inputs.lastName.value,
-            middleName:inputs.middleName.value,
+            name:inputs.name.value,
             email:inputs.email.value,
-            stripeUsername:inputs.stripeUsername.value,
-            phoneno:inputs.phoneno.value,
             password:inputs.password.value,
-            stripeAccountId:inputs.stripeAccountId.value,
-            country:inputs.country.value,
         };
         console.log("Stripe User Form Submit", stripeUserData);
         // const firstNameIsValid = stripeUserData.firstName.trim().length > 0;
@@ -101,23 +71,16 @@ function StripeUserForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }
         // }
         setInputs((curInputs) => {
           return {
-              firstName: {value:curInputs.firstName.value, isValid: true},
-              lastName: {value:curInputs.lastName.value, isValid: true},
-              middleName: {value:curInputs.middleName.value},
+              name: {value:curInputs.name.value, isValid: true},              
               email: {value:curInputs.email.value, isValid: true},
-              phoneno: {value:curInputs.phoneno.value, isValid: true},
-              stripeUsername: {value:curInputs.stripeUsername.value, isValid: true},
               password: {value:curInputs.password.value, isValid: true},
-              stripeAccountId: {value:curInputs.stripeAccountId.value},
-              country: {value:curInputs.country.value, isValid: true},
           }
         });
         console.log("before submit");
         onSubmit(stripeUserData);
       }
     
-      const formIsInvalid = !inputs.firstName.isValid || !inputs.lastName.isValid || !inputs.email.isValid || !inputs.phoneno.isValid ||
-       !inputs.stripeUsername.isValid || !inputs.password.isValid || !inputs.country.isValid;
+      const formIsInvalid = !inputs.name.isValid || !inputs.email.isValid || !inputs.password.isValid;
 
     return(
         <ScrollView style={styles.scroll}>
@@ -125,29 +88,13 @@ function StripeUserForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }
             <Text style={styles.title}>Stripe User Details</Text>
             <View>
                 <Input
-                label="First Name"
-                invalid={!inputs.firstName.isValid}
+                label="User Name"
+                invalid={!inputs.name.isValid}
                 textInputConfig={{
-                    onChangeText: inputChangedHandler.bind(this, 'firstName'),
-                    value: inputs.firstName.value,
+                    onChangeText: inputChangedHandler.bind(this, 'name'),
+                    value: inputs.name.value,
                 }}
-                />
-                <Input
-                label="Middle Name"
-                invalid={!inputs.middleName.isValid}
-                textInputConfig={{
-                    onChangeText: inputChangedHandler.bind(this, 'middleName'),
-                    value: inputs.middleName.value,
-                }}
-                />
-                <Input
-                label="Last Name"
-                invalid={!inputs.lastName.isValid}
-                textInputConfig={{
-                    onChangeText: inputChangedHandler.bind(this, 'lastName'),
-                    value: inputs.lastName.value,
-                }}
-                />                
+                />             
                 <Input
                     label="Email"
                     invalid={!inputs.email.isValid}
@@ -159,26 +106,6 @@ function StripeUserForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }
                     }}
                 />
                 <Input
-                    label="Phone No"
-                    invalid={!inputs.phoneno.isValid}
-                    textInputConfig={{
-                    // autoCapitalize: 'none'
-                    // autoCorrect: false // default is true
-                    onChangeText: inputChangedHandler.bind(this, 'phoneno'),
-                    value: inputs.phoneno.value,
-                    }}
-                />
-                <Input
-                    label="Stripe User Name"
-                    invalid={!inputs.stripeUsername.isValid}
-                    textInputConfig={{
-                    // autoCapitalize: 'none'
-                    // autoCorrect: false // default is true
-                    onChangeText: inputChangedHandler.bind(this, 'stripeUsername'),
-                    value: inputs.stripeUsername.value,
-                    }}
-                />
-                <Input
                     label="Stripe Password"
                     invalid={!inputs.password.isValid}
                     textInputConfig={{
@@ -186,26 +113,6 @@ function StripeUserForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }
                     // autoCorrect: false // default is true
                     onChangeText: inputChangedHandler.bind(this, 'password'),
                     value: inputs.password.value,
-                    }}
-                />
-                <Input
-                    label="Stripe Account Id"
-                    invalid={!inputs.stripeAccountId.isValid}
-                    textInputConfig={{
-                    // autoCapitalize: 'none'
-                    // autoCorrect: false // default is true
-                    onChangeText: inputChangedHandler.bind(this, 'stripeAccountId'),
-                    value: inputs.stripeAccountId.value,
-                    }}
-                />
-                <Input
-                    label="Country"
-                    invalid={!inputs.country.isValid}
-                    textInputConfig={{
-                    // autoCapitalize: 'none'
-                    // autoCorrect: false // default is true
-                    onChangeText: inputChangedHandler.bind(this, 'country'),
-                    value: inputs.country.value,
                     }}
                 />
             </View>        
