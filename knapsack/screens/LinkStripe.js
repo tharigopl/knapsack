@@ -7,7 +7,7 @@ import { useContext, useLayoutEffect, useState, useEffect } from 'react';
 import { StripeUserContext } from '../store/stripe-context';
 import { httpRequest } from '@alpacahq/alpaca-trade-api/dist/api';
 import { signUpStripe } from '../util/stripe';
-import * as WebBrowser from 'expo-web-browser';
+//import * as WebBrowser from 'expo-web-browser';
 
 export default function LinkStripe({ route, navigation }) {
 

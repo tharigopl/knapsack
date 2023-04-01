@@ -2,7 +2,7 @@
   "expo": {
     "name": "Knapsack",
     "slug": "Knapsack",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "backgroundColor": "#24180f",
@@ -18,12 +18,12 @@
       "**/*"
     ],
     "ios": {
-      "buildNumber": "1.0.0",
+      "buildNumber": "1.1.0",
       "supportsTablet": true,
       "bundleIdentifier": "com.tharigopla.Knapsack"
     },
     "android": {
-      "versionCode": 1,
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -37,6 +37,7 @@
       "eas": {
         "projectId": "e0a4158c-4d31-4406-aaa5-9190e6fdeb68"
       }
-    }
+    },
+    "owner": "tharigopla"
   }
 }

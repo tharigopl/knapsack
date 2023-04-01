@@ -5,7 +5,6 @@ import { useContext, useLayoutEffect, useState, useEffect } from 'react';
 import { WebView } from 'react-native-webview';
 //import {Linking} from 'expo-linking';
 //import * as Linking from 'expo-linking';
-import WebBrowser from 'expo-web-browser';
 export default function StripeUserOnboarding1({route, navigation}) {
 
     const [url, setUrl] = useState('');
