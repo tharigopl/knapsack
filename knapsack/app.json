@@ -38,6 +38,16 @@
         "projectId": "e0a4158c-4d31-4406-aaa5-9190e6fdeb68"
       }
     },
-    "owner": "tharigopla"
+    "owner": "tharigopla",
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ]
   }
 }
