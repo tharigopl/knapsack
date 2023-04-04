@@ -2,7 +2,7 @@
   "expo": {
     "name": "Knapsack",
     "slug": "Knapsack",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "backgroundColor": "#24180f",
@@ -18,9 +18,12 @@
       "**/*"
     ],
     "ios": {
-      "buildNumber": "1.1.0",
+      "buildNumber": "1.1.1",
       "supportsTablet": true,
-      "bundleIdentifier": "com.tharigopla.Knapsack"
+      "bundleIdentifier": "com.tharigopla.Knapsack",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to scan barcodes on event tickets."
+      }
     },
     "android": {
       "versionCode": 2,

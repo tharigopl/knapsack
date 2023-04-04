@@ -57,7 +57,7 @@ export default function LinkStripe({ route, navigation }) {
       try {
         if (true) {          
           const stripeUserData = await signUpStripe(userData);
-          console.log("*******************  Stripe User Data  ***********************",stripeUserData.user.accountLink.url);
+          console.log("*******************  Stripe User Data  ***********************",stripeUserData.user);
           // let result = await WebBrowser.openBrowserAsync(stripeUserData.user.accountLink.url);
           // setResult(result);
           // console.log("Result ",result);

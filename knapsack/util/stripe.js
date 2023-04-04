@@ -17,7 +17,7 @@ export async function signUpStripe(userData) {
 
   console.log("Stripe URL ", MONGO_STRIPE_API_URL, userData);
 
-  const response = await axios.post(MONGO_STRIPE_API_URL+'/signup', userData).catch(function (error) {
+  const response = await axios.post(MONGO_STRIPE_API_URL+'/usignup', userData).catch(function (error) {
     if (error.response) {
       // Request made and server responded
       console.log(error.response.data);

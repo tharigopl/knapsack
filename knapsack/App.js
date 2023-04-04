@@ -44,6 +44,9 @@ import PaymentScreen from './screens/PaymentScreen';
 import LinkStripe from './screens/LinkStripe';
 import StripeUserOnboarding1 from './screens/StripeUserOnboarding1';
 import StripeDashboard from './screens/StripeDashboard';
+import ManageParty from './screens/ManageParty';
+import AllParties from './screens/AllParties';
+import PartiesContextProvider from './store/parties-context';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -187,6 +190,55 @@ function ExpensesOverview() {
   );
 }
 
+function PartiesOverview() {
+  return (
+    
+    <BottomTabs.Navigator
+    screenOptions={({ navigation }) => ({
+      headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+      headerTintColor: 'white',
+      tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+      tabBarActiveTintColor: GlobalStyles.colors.accent500,
+      headerRight: ({ tintColor }) => (
+        <IconButton
+          icon="add"
+          size={24}
+          color={tintColor}
+          onPress={() => {
+            navigation.navigate('ManageParty');
+          }}
+        />
+      ),
+    })}
+  >
+
+       <BottomTabs.Screen
+        name="AllParties"
+        component={AllParties}
+        options={{
+          title: 'All Parties',
+          tabBarLabel: 'All Parties',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="calendar" size={size} color={color} />
+          ),
+        }}
+      />
+      <BottomTabs.Screen
+        name="ManageParties"
+        component={ManageParty}
+        options={{
+          title: 'Manage Party',
+          tabBarLabel: 'Manage Parties',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="hourglass" size={size} color={color} />
+          ),
+        }}
+      />
+    </BottomTabs.Navigator>
+  );
+}
+
+
 function AccountsOverview() {
   return (
     
@@ -295,9 +347,17 @@ function AuthenticatedStack() {
           />          
       
       <Stack.Screen name="AllExpensesOverview" component={ExpensesOverview} options={{headerShown:false}}/>
+      <Stack.Screen name="AllPartiesOverview" component={PartiesOverview} options={{headerShown:false}}/>
       <Stack.Screen
             name="ManageExpense"
             component={ManageExpense}
+            options={{
+              presentation: 'modal',
+            }}
+          />
+          <Stack.Screen
+            name="ManageParty"
+            component={ManageParty}
             options={{
               presentation: 'modal',
             }}
@@ -375,6 +435,7 @@ function Navigation() {
       //   <CardScreen />
         <UsersContextProvider>
           <StripeUsersContextProvider>
+            <PartiesContextProvider>
           <AccountsContextProvider>
           <ExpensesContextProvider>
           <TasksContextProvider>
@@ -385,6 +446,7 @@ function Navigation() {
             </TasksContextProvider>
           </ExpensesContextProvider>
           </AccountsContextProvider>
+          </PartiesContextProvider>
           </StripeUsersContextProvider>
         </UsersContextProvider>
       // </StripeProvider>

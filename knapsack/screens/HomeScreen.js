@@ -55,7 +55,7 @@ function HomeScreen({ navigation }) {
   function renderCategoryItem(itemData) {
     function pressHandler() {
 
-        if(itemData.item.id === 'h6'){
+        if(itemData.item.id === 'h9'){
             navigation.navigate('AllExpensesOverview', {
                 token:token,
             });
@@ -77,6 +77,16 @@ function HomeScreen({ navigation }) {
               editedUserId:editedUserId,
               editedUser:selectedUser,
               token:token,
+          });          
+        }
+        else if(itemData.item.id === 'h5'){ 
+          navigation.navigate('AllExpensesOverview', {
+            token:token,
+          });          
+        }
+        else if(itemData.item.id === 'h6'){ 
+          navigation.navigate('AllPartiesOverview', {
+            token:token,
           });          
         }
 

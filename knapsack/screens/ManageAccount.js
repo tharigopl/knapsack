@@ -63,10 +63,12 @@ console.log("Inside Manage Account  "+ editedAccountId);
   setIsSubmitting(true);
     try {
       if (isEditing) {
+        console.log("Update Account");
         accountsCtx.updateAccount(editedAccountId, accountData);
         await updateAccount(editedAccountId, accountData, token);
       } else {
-        const id = await storeAccount(accountData);
+        console.log("Store Account");
+        const id = await storeAccount(accountData, token);
         console.log(" Stored Accont  ",id, accountData);
         accountsCtx.addAccount({ ...accountData, id: id });
         console.log(" Stored Accont 1 !!!!!!!!!@@@@@ ",accountsCtx.accounts);
