@@ -270,3 +270,92 @@ export async function storeAccount(accountData, token) {
   
     });
   }
+
+
+  export async function storeParty(expenseData, token) {  
+    const response = await axios.post(`${STRIPEFB_BACKEND_URL}/parties.json?auth=${token}`, expenseData).catch(function (error) {
+      if (error.response) {
+        // Request made and server responded
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
+  
+    });
+    const id = response.data.name;
+    return id;
+  }
+  
+  export async function fetchParties(token) {
+    const response = await axios.get(STRIPEFB_BACKEND_URL + '/parties.json?auth='+ token).catch(function (error) {
+      if (error.response) {
+        // Request made and server responded
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
+  
+    });
+  
+    const expenses = [];
+  
+    for (const key in response.data) {
+      const expenseObj = {
+        id: key,
+        amount: response.data[key].amount,
+        date: new Date(response.data[key].date),
+        description: response.data[key].description
+      };
+      expenses.push(expenseObj);
+    }
+  
+    return expenses;
+  }
+  
+  export async function updateParty(id, expenseData, token) {
+    return axios.put(STRIPEFB_BACKEND_URL + `/parties/${id}.json?auth=${token}`, expenseData).catch(function (error) {
+      if (error.response) {
+        // Request made and server responded
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
+  
+    });
+  }
+  
+  export async function deleteParty(id, token) {
+    return axios.delete(STRIPEFB_BACKEND_URL + `/parties/${id}.json?auth=${token}`).catch(function (error) {
+      if (error.response) {
+        // Request made and server responded
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
+  
+    });
+  }

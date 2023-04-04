@@ -1,13 +1,17 @@
 import { useContext, useState } from 'react';
-import { View } from 'react-native';
 
+import PartiesOutput from '../components/PartiesOutput/PartiesOutput';
 import { PartiesContext } from '../store/parties-context';
 
 function AllParties() {
-  const expensesCtx = useContext(PartiesContext);
+  const partiesCtx = useContext(PartiesContext);
   
   return (
-    <View></View>
+    <PartiesOutput
+      parties={partiesCtx.parties}
+      partiesPeriod="Total"
+      fallbackText="No registered parties found!"
+    />
   );
 }
 
