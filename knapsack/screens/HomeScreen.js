@@ -79,6 +79,16 @@ function HomeScreen({ navigation }) {
               token:token,
           });          
         }
+        else if(itemData.item.id === 'h5'){ 
+          navigation.navigate('AllExpensesOverview', {
+            token:token,
+          });          
+        }
+        else if(itemData.item.id === 'h6'){ 
+          navigation.navigate('AllPartiesOverview', {
+            token:token,
+          });          
+        }
 
     }
 

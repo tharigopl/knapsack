@@ -1,40 +1,67 @@
-import { StyleSheet, Text, View, Linking } from 'react-native'
-import React from 'react'
-import { GlobalStyles } from '../constants/styles';
-import { useContext, useLayoutEffect, useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { View, Button, StyleSheet} from 'react-native';
 import { WebView } from 'react-native-webview';
-//import {Linking} from 'expo-linking';
-//import * as Linking from 'expo-linking';
-export default function StripeUserOnboarding1({route, navigation}) {
+import { useContext, useLayoutEffect, useEffect } from 'react';
+import { GlobalStyles } from '../constants/styles';
 
-    const [url, setUrl] = useState('');
+const StripeUserOnboarding1 = ({ route, navigation }) => {
+  const [webViewVisible, setWebViewVisible] = useState(true);
 
-    //const urltemp = Linking.useURL();
 
-    console.log("StripeUserOnboarding1",route.params);
-    useEffect(()=>{
-		setUrl(route.params.accountSetupUrl.url);
-	}, [])
+  const [url, setUrl] = useState('');
 
-  return (  
+  //const urltemp = Linking.useURL();
+
+  console.log("StripeUserOnboarding1",route.params);
+  useEffect(()=>{
+    setUrl(route.params.accountSetupUrl.url);
+  }, []);
+
+  const handleCloseWebView = () => {
+    setWebViewVisible(false);
+    navigation.navigate('HomeScreen');
+  };
+
+  return (
     <View style={styles.container}>
-      <WebView source={{uri:url}}></WebView>
-    </View>  
-  )
-}
+      {webViewVisible ? (
+        <WebView
+          source={{uri:url}}
+          onShouldStartLoadWithRequest={() => true}
+          onNavigationStateChange={navState => {
+            if (navState.url === url+'/close') {
+              handleCloseWebView();
+            }
+          }}
+        />
+      ) : (
+        <Button title="Go to HomeScreen Screen" onPress={() => navigation.navigate('HomeScreen')} />
+      )}
+    </View>
+  );
+};
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//   },
+// });
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingHorizontal: 24,
-        paddingTop: 100,
-        paddingBottom: 0,
-        backgroundColor: GlobalStyles.colors.primary700,
-      },
-      infoText: {
-        color: 'white',
-        fontSize: 50,
-        textAlign: 'center',
-        marginTop: 32,
-      },
+  container: {
+      flex: 1,
+      paddingHorizontal: 24,
+      paddingTop: 100,
+      paddingBottom: 0,
+      backgroundColor: GlobalStyles.colors.primary700,
+    },
+    infoText: {
+      color: 'white',
+      fontSize: 50,
+      textAlign: 'center',
+      marginTop: 32,
+    },
 })
+
+export default StripeUserOnboarding1;
+

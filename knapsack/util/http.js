@@ -99,7 +99,7 @@ export async function deleteExpense(id, token) {
 
 export async function storeAccount(accountData, token) {
 
-  console.log("Store Account Token "+ [accountData]);
+  console.log("Store Account Token ",token);
     const response = await axios.post(STRIPEFB_BACKEND_URL + '/accounts.json?auth='+ token, accountData).catch(function (error) {
         if (error.response) {
           // Request made and server responded
