@@ -15,7 +15,7 @@ function LoginScreen() {
   const authCtx = useContext(AuthContext);
   //const auth = getAuth();
 
-  console.log("TEST", auth);
+  //console.log("TEST", auth);
   async function loginHandler({email, password})
   {
     console.log("Process env ", process.env);
@@ -27,10 +27,13 @@ function LoginScreen() {
           console.log('User account created & signed in!');
           userCredentials.user.getIdToken().then((token) => {
             
-            console.log('TOKEN ', token);
+            
             authCtx.authenticate(token);
-          });
-          
+            
+          });          
+          const ud = userCredentials.user.uid;
+          console.log('TOKEN ', ud);
+          authCtx.setUid(ud);
         })
         .catch(error => {
           if (error.code === 'auth/email-already-in-use') {

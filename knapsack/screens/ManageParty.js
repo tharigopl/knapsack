@@ -18,6 +18,7 @@ function ManageParty({ route, navigation }) {
 
   const authCtx = useContext(AuthContext);
     const token = authCtx.token;
+    const uid = authCtx.uid;
   
   const editedPartyId = route.params?.partyId;
   const isEditing = !!editedPartyId;
@@ -39,7 +40,7 @@ function ManageParty({ route, navigation }) {
       partiesCtx.deleteParty(editedPartyId);
       navigation.goBack();
     } catch (error) {
-      setError('Could not delete expense - please try again later!');
+      setError('Could not delete party - please try again later!');
       setIsSubmitting(false);
     }
   }
@@ -49,6 +50,7 @@ function ManageParty({ route, navigation }) {
   }
 
   async function confirmHandler(partyData) {
+    partyData['uid'] = uid;
     setIsSubmitting(true);
     try {
       if (isEditing) {

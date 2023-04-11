@@ -28,7 +28,7 @@ import AppLoading from 'expo-app-loading';
 import AllExpenses from './screens/AllExpenses';
 import RecentExpenses from './screens/RecentExpenses';
 import AllCards from './screens/AllCards';
-
+import AllContacts from './screens/AllContacts';
 import ExpensesContextProvider from './store/expenses-context';
 import AccountsContextProvider from './store/accounts-context';
 import TasksContextProvider from './store/tasks-context';
@@ -153,7 +153,7 @@ function ExpensesOverview() {
     })}
   >
 
-<BottomTabs.Screen
+      <BottomTabs.Screen
         name="RecentExpenses"
         component={RecentExpenses}
         options={{
@@ -220,6 +220,17 @@ function PartiesOverview() {
           tabBarLabel: 'All Parties',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="calendar" size={size} color={color} />
+          ),
+        }}
+      />
+      <BottomTabs.Screen
+        name="AllContacts"
+        component={AllContacts}
+        options={{
+          title: 'Contacts',
+          tabBarLabel: 'Contacts',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="hourglass" size={size} color={color} />
           ),
         }}
       />

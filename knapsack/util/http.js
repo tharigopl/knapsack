@@ -292,8 +292,10 @@ export async function storeAccount(accountData, token) {
     return id;
   }
   
-  export async function fetchParties(token) {
-    const response = await axios.get(STRIPEFB_BACKEND_URL + '/parties.json?auth='+ token).catch(function (error) {
+  export async function fetchParties(token, uid) {
+    console.log("Fetch parties ", STRIPEFB_BACKEND_URL, token, uid);
+      const response = await axios.get(STRIPEFB_BACKEND_URL + '/parties.json?auth='+ token).catch(function (error) {
+      //const response = await axios.get(`${STRIPEFB_BACKEND_URL}/parties.json?auth=${token}&orderBy=${uid}`).catch(function (error) {
       if (error.response) {
         // Request made and server responded
         console.log(error.response.data);
@@ -309,19 +311,21 @@ export async function storeAccount(accountData, token) {
   
     });
   
-    const expenses = [];
-  
+    const parties = [];
+    console.log("Fetch parties response ", response.data);
     for (const key in response.data) {
-      const expenseObj = {
+      const parrtyObj = {
         id: key,
-        amount: response.data[key].amount,
+        location: response.data[key].location,
         date: new Date(response.data[key].date),
-        description: response.data[key].description
+        description: response.data[key].description,
+        uid: response.data[key].uid
       };
-      expenses.push(expenseObj);
+      if(parrtyObj.uid === uid)
+        parties.push(parrtyObj);
     }
-  
-    return expenses;
+    console.log("Fetch parties response 1", parties);
+    return parties;
   }
   
   export async function updateParty(id, expenseData, token) {
@@ -344,6 +348,98 @@ export async function storeAccount(accountData, token) {
   
   export async function deleteParty(id, token) {
     return axios.delete(STRIPEFB_BACKEND_URL + `/parties/${id}.json?auth=${token}`).catch(function (error) {
+      if (error.response) {
+        // Request made and server responded
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
+  
+    });
+  }
+
+  export async function storeContact(expenseData, token) {  
+    const response = await axios.post(`${STRIPEFB_BACKEND_URL}/contacts.json?auth=${token}`, expenseData).catch(function (error) {
+      if (error.response) {
+        // Request made and server responded
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
+  
+    });
+    const id = response.data.name;
+    return id;
+  }
+  
+  export async function fetchContact(token, uid) {
+    console.log("Fetch parties ", STRIPEFB_BACKEND_URL, token, uid);
+      const response = await axios.get(STRIPEFB_BACKEND_URL + '/contacts.json?auth='+ token).catch(function (error) {
+      //const response = await axios.get(`${STRIPEFB_BACKEND_URL}/parties.json?auth=${token}&orderBy=${uid}`).catch(function (error) {
+      if (error.response) {
+        // Request made and server responded
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
+  
+    });
+  
+    const parties = [];
+    console.log("Fetch parties response ", response.data);
+    for (const key in response.data) {
+      const parrtyObj = {
+        id: key,
+        location: response.data[key].location,
+        date: new Date(response.data[key].date),
+        description: response.data[key].description,
+        uid: response.data[key].uid
+      };
+      if(parrtyObj.uid === uid)
+        parties.push(parrtyObj);
+    }
+    console.log("Fetch parties response 1", parties);
+    return parties;
+  }
+  
+  export async function updateContact(id, expenseData, token) {
+    return axios.put(STRIPEFB_BACKEND_URL + `/contacts/${id}.json?auth=${token}`, expenseData).catch(function (error) {
+      if (error.response) {
+        // Request made and server responded
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
+  
+    });
+  }
+  
+  export async function deleteContact(id, token) {
+    return axios.delete(STRIPEFB_BACKEND_URL + `/contacts/${id}.json?auth=${token}`).catch(function (error) {
       if (error.response) {
         // Request made and server responded
         console.log(error.response.data);

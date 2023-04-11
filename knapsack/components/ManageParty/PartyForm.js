@@ -12,7 +12,7 @@ function PartyForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
 
   const [inputs, setInputs] = useState({
     location: {
-      value: defaultValues ? defaultValues.amount.toString() : '',
+      value: defaultValues ? defaultValues.location : '',
       isValid: true,
     },
     date: {
@@ -36,12 +36,12 @@ function PartyForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
 
   function submitHandler() {
     const partyData = {
-      location: +inputs.location.value,
+      location: inputs.location.value,
       date: new Date(inputs.date.value),
       description: inputs.description.value,
     };
 
-    const locationIsValid = !isNaN(partyData.location) && partyData.location > 0;
+    const locationIsValid = partyData.location.trim().length > 0;
     const dateIsValid = partyData.date.toString() !== 'Invalid Date';
     const descriptionIsValid = partyData.description.trim().length > 0;
 
@@ -70,10 +70,8 @@ function PartyForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
 
   return (
     <View style={styles.form}>
-      <Text style={styles.title}>Your Expense</Text>
+      <Text style={styles.title}>Let's start a party!</Text>
       <View style={styles.inputsRow}>
-        
-       
       <Input
         label="Description"
         invalid={!inputs.description.isValid}
@@ -86,17 +84,16 @@ function PartyForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
         }}
       />
       <Input
-          style={styles.rowInput}
+          
           label="Location"
           invalid={!inputs.location.isValid}
           textInputConfig={{
-            keyboardType: 'decimal-pad',
             onChangeText: inputChangedHandler.bind(this, 'location'),
             value: inputs.location.value,
           }}
         />
          <Input
-          style={styles.rowInput}
+          
           label="Date"
           invalid={!inputs.date.isValid}
           textInputConfig={{
@@ -129,7 +126,7 @@ export default PartyForm;
 
 const styles = StyleSheet.create({
   form: {
-    marginTop: 40,
+    marginTop: -30,
   },
   title: {
     fontSize: 24,
@@ -139,7 +136,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   inputsRow: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
   },
   rowInput: {

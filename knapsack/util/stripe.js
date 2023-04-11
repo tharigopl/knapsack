@@ -17,7 +17,7 @@ export async function signUpStripe(userData) {
 
   console.log("Stripe URL ", MONGO_STRIPE_API_URL, userData);
 
-  const response = await axios.post(MONGO_STRIPE_API_URL+'/usignup', userData).catch(function (error) {
+  const response = await axios.post(MONGO_STRIPE_API_URL+'/signup', userData).catch(function (error) {
     if (error.response) {
       // Request made and server responded
       console.log(error.response.data);
@@ -33,9 +33,10 @@ export async function signUpStripe(userData) {
 
   });
   //console.log("Stripe Respose ",response);
-  console.log("Stripe Respose ", response.data.user.accountLink);  
+  console.log("Signup Stripe account", response.data);
+  console.log("Stripe Respose ", response);  
   //await Linking.openURL(response.data.user.accountLink.url);
-  console.log("Signup Stripe account");
+  
   return response.data;
 }
 

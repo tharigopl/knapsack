@@ -19,6 +19,7 @@ function HomeScreen({ navigation }) {
     const authCtx = useContext(AuthContext);
     const usersCtx = useContext(UserContext);
     const token = authCtx.token;
+    const uid = authCtx.uid;
 
     const [editedUserId, setEditedUserId] = useState("");
     const [selectedUser, setSelectedUser] = useState([]);
@@ -28,7 +29,8 @@ function HomeScreen({ navigation }) {
       async function getUserDetails() {
         setIsFetching(true);
         try {
-          console.log("Inside User Details "+token);
+          //console.log("Inside User Details "+token);
+          console.log("Inside UID  "+uid, token);
           const userDetail = await fetchUserDetails(token);
           setSelectedUser(userDetail);
           console.log("User Detail fetched ", userDetail);

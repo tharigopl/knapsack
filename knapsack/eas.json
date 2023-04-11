@@ -16,13 +16,13 @@
       },
       "distribution": "internal",
       "ios": {
-        "resourceClass": "m-medium",
-        "simulator": true
+        "resourceClass": "m-medium"
       }
     },
     "production": {
       "ios": {
-        "resourceClass": "m-medium"
+        "resourceClass": "m-medium",
+        "credentialsSource":"local"      
       }
     }
   },
