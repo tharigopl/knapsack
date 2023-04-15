@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { GlobalStyles } from '../../constants/styles';
 import { getFormattedDate } from '../../util/date';
 
-function ContactsItem({ id, description, location, date }) {
+function ContactsItem({ id, firstname, lastname, phoneno, email }) {
   const navigation = useNavigation();
 
   function contactPressHandler() {
@@ -20,13 +20,14 @@ function ContactsItem({ id, description, location, date }) {
     >
       <View style={styles.contactItem}>
         <View>
-          <Text style={[styles.textBase, styles.description]}>
-            {description}
+          <Text style={[styles.textBase, styles.firstname]}>
+            {firstname}
           </Text>
-          <Text style={styles.textBase}>{getFormattedDate(date)}</Text>
+          <Text style={styles.textBase}>{lastname}</Text>
         </View>
         <View style={styles.contactContainer}>
-          <Text style={styles.location}>{location}</Text>
+          <Text style={styles.phoneno}>{phoneno}</Text>
+          <Text style={styles.phoneno}>{email}</Text>
         </View>
       </View>
     </Pressable>
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
   textBase: {
     color: GlobalStyles.colors.primary50,
   },
-  description: {
+  firstname: {
     fontSize: 16,
     marginBottom: 4,
     fontWeight: 'bold',
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     minWidth: 80,
   },
-  location: {
+  phoneno: {
     color: GlobalStyles.colors.primary500,
     fontWeight: 'bold',
   },

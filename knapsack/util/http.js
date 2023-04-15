@@ -364,8 +364,8 @@ export async function storeAccount(accountData, token) {
     });
   }
 
-  export async function storeContact(expenseData, token) {  
-    const response = await axios.post(`${STRIPEFB_BACKEND_URL}/contacts.json?auth=${token}`, expenseData).catch(function (error) {
+  export async function storeContact(contactData, token) {  
+    const response = await axios.post(`${STRIPEFB_BACKEND_URL}/contacts.json?auth=${token}`, contactData).catch(function (error) {
       if (error.response) {
         // Request made and server responded
         console.log(error.response.data);
@@ -384,8 +384,8 @@ export async function storeAccount(accountData, token) {
     return id;
   }
   
-  export async function fetchContact(token, uid) {
-    console.log("Fetch parties ", STRIPEFB_BACKEND_URL, token, uid);
+  export async function fetchContacts(token, uid) {
+    console.log("Fetch contacts ", STRIPEFB_BACKEND_URL, token, uid);
       const response = await axios.get(STRIPEFB_BACKEND_URL + '/contacts.json?auth='+ token).catch(function (error) {
       //const response = await axios.get(`${STRIPEFB_BACKEND_URL}/parties.json?auth=${token}&orderBy=${uid}`).catch(function (error) {
       if (error.response) {
@@ -404,17 +404,18 @@ export async function storeAccount(accountData, token) {
     });
   
     const parties = [];
-    console.log("Fetch parties response ", response.data);
+    console.log("Fetch contact response ", response.data);
     for (const key in response.data) {
-      const parrtyObj = {
+      const contactObj = {
         id: key,
-        location: response.data[key].location,
-        date: new Date(response.data[key].date),
-        description: response.data[key].description,
-        uid: response.data[key].uid
+        firstname: response.data[key].firstname,
+        lastname: new Date(response.data[key].lastname),
+        email: response.data[key].email,
+        phoneno: response.data[key].phoneno,
+        uid: response.data[key].uid,
       };
-      if(parrtyObj.uid === uid)
-        parties.push(parrtyObj);
+      if(contactObj.uid === uid)
+        parties.push(contactObj);
     }
     console.log("Fetch parties response 1", parties);
     return parties;

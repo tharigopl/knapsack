@@ -18,6 +18,7 @@ import SignupScreen from './screens/SignupScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import ManageExpense from './screens/ManageExpense';
 import ManageAccount from './screens/ManageAccount';
+import ManageContact from './screens/ManageContact';
 import ManageUser from './screens/ManageUser';
 import AllAccounts from './screens/AllAccounts';
 import { Colors, GlobalStyles } from './constants/styles';
@@ -369,6 +370,13 @@ function AuthenticatedStack() {
           <Stack.Screen
             name="ManageParty"
             component={ManageParty}
+            options={{
+              presentation: 'modal',
+            }}
+          />
+          <Stack.Screen
+            name="ManageContact"
+            component={ManageContact}
             options={{
               presentation: 'modal',
             }}

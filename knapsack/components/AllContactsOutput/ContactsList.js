@@ -3,6 +3,7 @@ import { FlatList } from 'react-native';
 import ContactsItem from './ContactsItem';
 
 function renderContactsItem(itemData) {
+  console.log("Item Data",itemData);
   return <ContactsItem {...itemData.item} />;
 }
 

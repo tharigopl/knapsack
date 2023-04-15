@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { GlobalStyles } from '../../constants/styles';
+import Button from '../ui/Button';
 import ContactsList from './ContactsList';
 import ContactsSummary from './ContactsSummary';
 
@@ -11,10 +12,17 @@ function ContactsOutput({ contacts, fallbackText }) {
     content = <ContactsList contacts={contacts} />;
   }
 
+  function submitHandler() {
+    console.log("Add Contact Clicked");
+    
+  }
+  
+
   return (
     <View style={styles.container}>
-      <ContactsSummary contacts={contacts} />
+      {/* <ContactsSummary contacts={contacts} /> */}
       {content}
+
     </View>
   );
 }
@@ -34,5 +42,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     marginTop: 32,
+  },
+  button:{
+    paddingTop: 20
   },
 });

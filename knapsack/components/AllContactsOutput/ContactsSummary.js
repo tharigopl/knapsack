@@ -2,14 +2,14 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import { GlobalStyles } from '../../constants/styles';
 
-function PartiesSummary({ parties, periodName }) {
+function PartiesSummary({ parties }) {
   // const partiesSum = parties.reduce((sum, party) => {
   //   return sum + party.amount;
   // }, 0);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.period}>{periodName}</Text>      
+           
     </View>
   );
 }
