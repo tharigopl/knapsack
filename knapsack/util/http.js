@@ -225,7 +225,7 @@ export async function storeAccount(accountData, token) {
         // Something happened in setting up the request that triggered an Error
         console.log('Error', error.message);
       }
-  
+      console.log("Fetch user Details hrrp")
     });
   
     const users = [];

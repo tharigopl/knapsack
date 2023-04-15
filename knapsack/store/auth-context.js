@@ -17,20 +17,23 @@ function AuthContextProvider({children}){
 
     function setUid(uid){
         setAuthUid(uid);
-        console.log("UId 1"+uid);
-        //AsyncStorage.setItem('token', token);
+        console.log("UId "+uid);        
+        AsyncStorage.setItem('uid', uid);
     }
 
     function authenticate(token){
-        setAuthToken(token);
-        
+        setAuthToken(token);       
+        console.log("UId Toekn "+token); 
         AsyncStorage.setItem('token', token);
     }
 
     function logout(){
+        console.log("log out 1");
         setAuthToken(null);
         setAuthUid(null);
+        console.log("log out");
         AsyncStorage.removeItem('token');
+        AsyncStorage.removeItem('uid');
     }
 
     const value = {

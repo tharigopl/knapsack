@@ -10,7 +10,7 @@ import { UserContext } from '../store/user-context';
 
 
 function HomeScreen({ navigation }) {
-
+  console.log("Home Screen")
     const [fetchedMessage, setFetchedMessage] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false); 
     const [isFetching, setIsFetching] = useState(true);
